@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>第五人格監管者預測器（多語言版）</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        select { margin: 5px; padding: 8px; font-size: 14px; border-radius: 5px; }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .query-button { background-color: #4CAF50; color: white; }
+        .copy-button { background-color: #2196F3; color: white; }
+        .clear-button { background-color: #f44336; color: white; }
+        button:hover { opacity: 0.8; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        #prediction { font-size: 18px; margin-top: 20px; color: #333; }
+        .row { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+        .right-align { margin-left: auto; display: flex; align-items: center; }
+    </style>
+</head>
+<body>
+    <h1 id="title">第五人格 - 監管者預測器</h1>
+    <div class="row">
+        <label id="banLabel">Ban位：</label>
+        <select id="ban1"><option value="">--請選擇Ban位--</option>
+<option value="前鋒">前鋒</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="勘探員">勘探員</option>
+<option value="野人">野人</option>
+<option value="記者">記者</option>
+<option value="火災調查員">火災調查員</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="大副">大副</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="雜技演員">雜技演員</option>
+<option value="囚徒">囚徒</option>
+<option value="律師">律師</option>
+<option value="病患">病患</option>
+<option value="小女孩">小女孩</option>
+<option value="牛仔">牛仔</option>
+<option value="守墓人">守墓人</option>
+<option value="法羅女士">法羅女士</option>
+<option value="調酒師">調酒師</option>
+<option value="玩具商">玩具商</option>
+<option value="心理學家">心理學家</option>
+<option value="無">無</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="野人">野人</option>
+<option value="勘探員">勘探員</option>
+<option value="記者">記者</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="火災調查員">火災調查員</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="大副">大副</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="雜技演員">雜技演員</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="囚徒">囚徒</option>
+<option value="守墓人">守墓人</option>
+<option value="調酒師">調酒師</option>
+<option value="法羅女士">法羅女士</option>
+<option value="玩具商">玩具商</option>
+<option value="律師">律師</option>
+<option value="無">無</option></select>
+        <select id="ban2"><option value="">--請選擇Ban位--</option>
+<option value="前鋒">前鋒</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="勘探員">勘探員</option>
+<option value="野人">野人</option>
+<option value="記者">記者</option>
+<option value="火災調查員">火災調查員</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="大副">大副</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="雜技演員">雜技演員</option>
+<option value="囚徒">囚徒</option>
+<option value="律師">律師</option>
+<option value="病患">病患</option>
+<option value="小女孩">小女孩</option>
+<option value="牛仔">牛仔</option>
+<option value="守墓人">守墓人</option>
+<option value="法羅女士">法羅女士</option>
+<option value="調酒師">調酒師</option>
+<option value="玩具商">玩具商</option>
+<option value="心理學家">心理學家</option>
+<option value="無">無</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="野人">野人</option>
+<option value="勘探員">勘探員</option>
+<option value="記者">記者</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="火災調查員">火災調查員</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="大副">大副</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="雜技演員">雜技演員</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="囚徒">囚徒</option>
+<option value="守墓人">守墓人</option>
+<option value="調酒師">調酒師</option>
+<option value="法羅女士">法羅女士</option>
+<option value="玩具商">玩具商</option>
+<option value="律師">律師</option>
+<option value="無">無</option></select>
+        <select id="ban3"><option value="">--請選擇Ban位--</option>
+<option value="前鋒">前鋒</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="勘探員">勘探員</option>
+<option value="野人">野人</option>
+<option value="記者">記者</option>
+<option value="火災調查員">火災調查員</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="大副">大副</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="雜技演員">雜技演員</option>
+<option value="囚徒">囚徒</option>
+<option value="律師">律師</option>
+<option value="病患">病患</option>
+<option value="小女孩">小女孩</option>
+<option value="牛仔">牛仔</option>
+<option value="守墓人">守墓人</option>
+<option value="法羅女士">法羅女士</option>
+<option value="調酒師">調酒師</option>
+<option value="玩具商">玩具商</option>
+<option value="心理學家">心理學家</option>
+<option value="無">無</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="野人">野人</option>
+<option value="勘探員">勘探員</option>
+<option value="記者">記者</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="火災調查員">火災調查員</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="大副">大副</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="雜技演員">雜技演員</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="囚徒">囚徒</option>
+<option value="守墓人">守墓人</option>
+<option value="調酒師">調酒師</option>
+<option value="法羅女士">法羅女士</option>
+<option value="玩具商">玩具商</option>
+<option value="律師">律師</option>
+<option value="無">無</option></select>
+        <label id="mapLabel" style="margin-left:20px;">地圖（選填）：</label>
+        <select id="map"><option value="">（選填）不限地圖</option>
+<option value="軍工廠">軍工廠</option>
+<option value="紅教堂">紅教堂</option>
+<option value="聖心醫院">聖心醫院</option>
+<option value="湖景村">湖景村</option>
+<option value="月亮河公園">月亮河公園</option>
+<option value="里奧的回憶">里奧的回憶</option>
+<option value="永眠鎮">永眠鎮</option>
+<option value="唐人街">唐人街</option>
+<option value="不歸林">不歸林</option></select>
+
+        <div class="right-align">
+            <label id="langLabel" style="margin-right: 5px;">🌐</label>
+            <select id="language" onchange="changeLanguage()" style="width: 120px;">
+                <option value="中文">中文</option>
+                <option value="韓文">한국어</option>
+                <option value="日文">日本語</option>
+                <option value="英文">English</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <button id="queryButton" class="query-button" onclick="predict(false)">查詢</button>
+        <button id="copyButton" class="copy-button" onclick="predict(true)">查詢並複製到剪貼簿</button>
+        <button id="clearButton" class="clear-button" onclick="clearSelection()">清除選擇</button>
+    </div>
+
+    <div id="message" style="color: green; font-weight: bold;"></div>
+    <div id="prediction"></div>
+    <div id="result"></div>
+
+    <script>
+        let data = [];
+        const langDict = {"軍工廠": {"韓文": "군수 공장", "日文": "軍需工場", "英文": "Arms Factory"}, "紅教堂": {"韓文": "붉은 성당", "日文": "赤の教会", "英文": "The Red Church"}, "聖心醫院": {"韓文": "성심 병원", "日文": "聖心病院", "英文": "Sacred Heart Hospital"}, "湖景村": {"韓文": "호수 마을", "日文": "湖景村", "英文": "Lakeside Village"}, "月亮河公園": {"韓文": "달빛강 공원", "日文": "月の河公園", "英文": "Moonlit River Park"}, "里奧的回憶": {"韓文": "레오의 기억", "日文": "レオの思い出", "英文": "Leo's Memory"}, "永眠鎮": {"韓文": "에버슬리핑 타운", "日文": "永眠町", "英文": "Eversleeping Town"}, "唐人街": {"韓文": "차이나타운", "日文": "中華街", "英文": "China Town"}, "不歸林": {"韓文": "돌아올 수 없는 숲", "日文": "罪の森", "英文": "Darkwoods"}, "幸運兒": {"韓文": "행운아", "日文": "幸運児", "英文": "Lucky Guy"}, "醫生": {"韓文": "의사", "日文": "医師", "英文": "Doctor"}, "律師": {"韓文": "변호사", "日文": "弁護士", "英文": "Lawyer"}, "慈善家": {"韓文": "도둑", "日文": "泥棒", "英文": "Thief"}, "園丁": {"韓文": "정원사", "日文": "庭師", "英文": "Gardener"}, "魔術師": {"韓文": "마술사", "日文": "マジシャン", "英文": "Magician"}, "冒險家": {"韓文": "모험가", "日文": "冒険家", "英文": "Explorer"}, "傭兵": {"韓文": "용병", "日文": "傭兵", "英文": "Mercenary"}, "空軍": {"韓文": "공군", "日文": "空軍", "英文": "Coordinator"}, "機械師": {"韓文": "기계공", "日文": "機械技師", "英文": "Mechanic"}, "前鋒": {"韓文": "포워드", "日文": "オフェンス", "英文": "Forward"}, "盲女": {"韓文": "맹인", "日文": "心眼", "英文": "The Mind's Eye"}, "祭司": {"韓文": "샤먼", "日文": "祭司", "英文": "Priestess"}, "調香師": {"韓文": "조향사", "日文": "調香師", "英文": "Perfumer"}, "牛仔": {"韓文": "카우보이", "日文": "カウボーイ", "英文": "Cowboy"}, "舞女": {"韓文": "무희", "日文": "踊り子", "英文": "Female Dancer"}, "先知": {"韓文": "선지자", "日文": "占い師", "英文": "Seer"}, "入殮師": {"韓文": "납관사", "日文": "納棺師", "英文": "Embalmer"}, "勘探員": {"韓文": "탐사원", "日文": "探鉱者", "英文": "Prospector"}, "咒術師": {"韓文": "주술사", "日文": "呪術師", "英文": "Enchantress"}, "野人": {"韓文": "야만인", "日文": "野人", "英文": "Wildling"}, "雜技演員": {"韓文": "곡예사", "日文": "曲芸師", "英文": "Acrobat"}, "大副": {"韓文": "항해사", "日文": "一等航海士", "英文": "First Officer"}, "調酒師": {"韓文": "바텐더", "日文": "バーメイド", "英文": "Barmaid"}, "郵差": {"韓文": "우편 배달부", "日文": "ポストマン", "英文": "Postman"}, "守墓人": {"韓文": "묘지기", "日文": "墓守", "英文": "Grave Keeper"}, "囚徒": {"韓文": "죄수", "日文": "囚人", "英文": "Prisoner"}, "昆蟲學者": {"韓文": "곤충학자", "日文": "昆虫学者", "英文": "Entomologist"}, "畫家": {"韓文": "화가", "日文": "画家", "英文": "Painter"}, "擊球手": {"韓文": "타자", "日文": "バッツマン", "英文": "Batter"}, "玩具商": {"韓文": "장난감 상인", "日文": "玩具職人", "英文": "Toy Merchant"}, "病患": {"韓文": "환자", "日文": "患者", "英文": "Patient"}, "心理學家": {"韓文": "심리학자", "日文": "心理学者", "英文": "Psychologist"}, "小說家": {"韓文": "소설가", "日文": "小説家", "英文": "Novelist"}, "小女孩": {"韓文": "여자아이", "日文": "少女", "英文": "Little girl"}, "哭泣小丑": {"韓文": "우는 광대", "日文": "泣きピエロ", "英文": "Weeping Clown"}, "教授": {"韓文": "교수", "日文": "教授", "英文": "Professor"}, "古董商": {"韓文": "골동품 상인", "日文": "骨董商", "英文": "Antiquarian"}, "作曲家": {"韓文": "작곡가", "日文": "作曲家", "英文": "Composer"}, "記者": {"韓文": "기자", "日文": "記者", "英文": "Journalist"}, "飛行家": {"韓文": "항공 전문가", "日文": "航空エンジニア", "英文": "Aeroplanist"}, "啦啦隊員": {"韓文": "치어리더", "日文": "応援団", "英文": "Cheerleader"}, "木偶師": {"韓文": "인형사", "日文": "人形師", "英文": "Puppeteer"}, "火災調查員": {"韓文": "화재조사관", "日文": "火災調査員", "英文": "Fire investigator"}, "法羅女士": {"韓文": "파로 부인", "日文": "レディ・ファウロ", "英文": "Faro lady"}, "騎士": {"韓文": "기사", "日文": "騎士", "英文": "Knight"}, "氣象學家": {"韓文": "기상학자", "日文": "気象学者", "英文": "Meteorologist"}, "弓箭手": {"韓文": "궁수", "日文": "弓使い", "英文": "Archer"}, "逃脫大師": {"韓文": "탈출마스터", "日文": "脱出マスター", "英文": "Escapologist"}, "廠長": {"韓文": "공장장", "日文": "復讐者", "英文": "Hell Ember"}, "小丑": {"韓文": "광대", "日文": "道化師", "英文": "Smiley Face"}, "鹿頭": {"韓文": "사냥터지기", "日文": "断罪狩人", "英文": "Gamekeeper"}, "傑克": {"韓文": "리퍼", "日文": "リッパー", "英文": "The Ripper"}, "蜘蛛": {"韓文": "거미", "日文": "結魂者", "英文": "Soul Weaver"}, "紅蝶": {"韓文": "붉은 나비", "日文": "芸者", "英文": "Geisha"}, "黄衣之主": {"韓文": "노란 옷의 왕", "日文": "黄衣の王", "英文": "The Feaster"}, "宿傘之魂": {"韓文": "우산의 영혼", "日文": "白黒無常", "英文": "Wu Chang"}, "攝影師": {"韓文": "사진사", "日文": "写真家", "英文": "Photographer"}, "瘋眼": {"韓文": "광기의 눈", "日文": "狂眼", "英文": "Mad Eyes"}, "夢之女巫": {"韓文": "꿈의 마녀", "日文": "夢の魔女", "英文": "Dream Witch"}, "愛哭鬼": {"韓文": "울보", "日文": "泣き虫", "英文": "Axe Boy"}, "孽蜥": {"韓文": "재앙의 도마뱀", "日文": "魔卜カゲ", "英文": "Evil Reptilian"}, "紅夫人": {"韓文": "블러디 퀸", "日文": "血の女王", "英文": "Bloody Queen"}, "26號守衛": {"韓文": "수위 26호", "日文": "ガードNo.26", "英文": "Guard 26"}, "使徒": {"韓文": "사도", "日文": "使徒", "英文": "Disciple"}, "小提琴家": {"韓文": "바이올리니스트", "日文": "ヴァイオリニスト", "英文": "Violinist"}, "雕刻家": {"韓文": "조각가", "日文": "彫刻師", "英文": "Sculptor"}, "博士": {"韓文": "박사", "日文": "アンデッド", "英文": "Undead"}, "破輪": {"韓文": "부서진 바퀴", "日文": "破輪", "英文": "The Breaking Wheel"}, "漁女": {"韓文": "나이아스", "日文": "漁師", "英文": "Naiad"}, "蠟像師": {"韓文": "밀랍인형사", "日文": "蝋人形師", "英文": "Wax Artist"}, "噩夢": {"韓文": "악몽", "日文": "悪夢", "英文": "Nightmare"}, "記錄員": {"韓文": "서기관", "日文": "書記官", "英文": "Clerk"}, "隱士": {"韓文": "은둔자", "日文": "隠者", "英文": "Hermit"}, "守夜人": {"韓文": "나이트 워치", "日文": "夜の番人", "英文": "Night Watch"}, "歌劇演員": {"韓文": "오페라 가수", "日文": "オペラ歌手", "英文": "Opera Singer"}, "愚人金": {"韓文": "사기꾼 같은 놈", "日文": "フールズ・ゴールド", "英文": "Fool's Gold"}, "時空之影": {"韓文": "시공의 그림자", "日文": "時空の影", "英文": "The Shadow"}, "跛腳羊": {"韓文": "절름발이 판", "日文": "足萎えの羊", "英文": "Goatman"}, "喧囂": {"韓文": "훌라발루", "日文": "フラバルー", "英文": "Hullabaloo"}, "雜貨商": {"韓文": "잡화상", "日文": "雑貨商", "英文": "Peddler"}};
+        const uiText = {"title": {"中文": "第五人格 - 監管者預測器", "韓文": "제5인격 - 헌터 예측기", "日文": "第五人格 - ハンター予測ツール", "英文": "Identity V - Hunter Predictor"}, "banLabel": {"中文": "Ban位：", "韓文": "밴 위치：", "日文": "BAN枠：", "英文": "Ban Slot:"}, "mapLabel": {"中文": "地圖（選填）：", "韓文": "맵（선택）：", "日文": "マップ（任意）：", "英文": "Map (Optional):"}, "queryButton": {"中文": "查詢", "韓文": "검색", "日文": "検索", "英文": "Query"}, "copyButton": {"中文": "查詢並複製到剪貼簿", "韓文": "검색 및 복사", "日文": "検索してクリップボードにコピー", "英文": "Query & Copy to Clipboard"}, "clearButton": {"中文": "清除選擇", "韓文": "선택 지우기", "日文": "選択をクリア", "英文": "Clear Selection"}, "langLabel": {"中文": "語言：", "韓文": "언어：", "日文": "言語：", "英文": "Language:"}, "defaultOption": {"中文": "--請選擇Ban位--", "韓文": "--밴 선택--", "日文": "--BANを選択--", "英文": "--Select Ban--"}, "mapOptional": {"中文": "（選填）不限地圖", "韓文": "（선택）맵 무관", "日文": "（任意）マップ指定なし", "英文": "(Optional) Any Map"}, "noData": {"中文": "找不到符合的資料。", "韓文": "일치하는 데이터가 없습니다.", "日文": "一致するデータが見つかりません。", "英文": "No matching data found."}, "predictionTitle": {"中文": "監管者出現機率預測：", "韓文": "헌터 출현 확률 예측：", "日文": "ハンター出現確率予測：", "英文": "Hunter Appearance Probability Prediction:"}, "copySuccess": {"中文": "已複製預測結果到剪貼簿 ✅", "韓文": "결과가 클립보드에 복사되었습니다 ✅", "日文": "結果がクリップボードにコピーされました ✅", "英文": "Prediction copied to clipboard ✅"}, "querySuccess": {"中文": "查詢成功 ✅", "韓文": "검색 성공 ✅", "日文": "検索成功 ✅", "英文": "Query successful ✅"}};
+
+        function copyToClipboard(text) {
+            const lang = document.getElementById('language').value;
+            navigator.clipboard.writeText(text).then(() => {
+                document.getElementById('message').innerText = uiText["copySuccess"][lang];
+                setTimeout(() => { document.getElementById('message').innerText = ""; }, 2000);
+            }).catch(err => {
+                console.error("複製失敗:", err);
+            });
+        }
+
+        function clearSelection() {
+            document.getElementById('ban1').value = "";
+            document.getElementById('ban2').value = "";
+            document.getElementById('ban3').value = "";
+            document.getElementById('map').value = "";
+            document.getElementById('prediction').innerHTML = "";
+            document.getElementById('result').innerHTML = "";
+            document.getElementById('message').innerHTML = "";
+        }
+
+        function translate(text, lang) {
+            if (lang === '中文' || !(text in langDict)) return text;
+            return langDict[text][lang] || text;
+        }
+
+        function predict(copy = false) {
+            const b1 = document.getElementById('ban1').value;
+            const b2 = document.getElementById('ban2').value;
+            const b3 = document.getElementById('ban3').value;
+            const map = document.getElementById('map').value;
+            const lang = document.getElementById('language').value;
+            const sortedBan = [b1, b2, b3].sort().join(',');
+
+            const matched = data.filter(row => 
+                row["Ban組合"] === sortedBan &&
+                (map === "" || row["地圖"] === map)
+            );
+
+            const resultDiv = document.getElementById("result");
+            const predictionDiv = document.getElementById("prediction");
+
+            if (matched.length === 0) {
+                predictionDiv.innerHTML = "";
+                resultDiv.innerHTML = `<p>${uiText["noData"][lang]}</p>`;
+                return;
+            }
+
+            const counts = {}
+            matched.forEach(row => {
+                const hunter = row["監管"];
+                counts[hunter] = (counts[hunter] || 0) + 1;
+            });
+
+            const total = matched.length;
+            const sortedCounts = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+            let predictionHTML = `<strong>${uiText["predictionTitle"][lang]}</strong><br><ul>`;
+            let copyText = `${uiText["predictionTitle"][lang]}\n`;
+            sortedCounts.forEach(([hunter, count]) => {
+                const percent = ((count / total) * 100).toFixed(1);
+                const translatedName = translate(hunter, lang);
+                predictionHTML += `<li><strong>${translatedName}</strong>：${percent}%</li>`;
+                copyText += `${translatedName}：${percent}%\n`;
+            });
+            predictionHTML += "</ul>";
+            predictionDiv.innerHTML = predictionHTML;
+
+            if (copy) {
+                copyToClipboard(copyText);
+            }
+
+            let html = "<table><tr><th>Ban1</th><th>Ban2</th><th>Ban3</th><th>地圖</th><th>監管</th><th>玩家</th></tr>";
+            matched.forEach(row => {
+                html += `<tr>
+                    <td>${translate(row.Ban1, lang)}</td>
+                    <td>${translate(row.Ban2, lang)}</td>
+                    <td>${translate(row.Ban3, lang)}</td>
+                    <td>${translate(row["地圖"], lang)}</td>
+                    <td>${translate(row["監管"], lang)}</td>
+                    <td>${row["玩家"]}</td>
+                </tr>`;
+            });
+            html += "</table>";
+            resultDiv.innerHTML = html;
+
+            document.getElementById('message').innerText = uiText["querySuccess"][lang];
+            setTimeout(() => { document.getElementById('message').innerText = ""; }, 2000);
+        }
+
+        function changeLanguage() {
+            const lang = document.getElementById('language').value;
+
+            document.getElementById('title').innerText = uiText["title"][lang];
+            document.getElementById('banLabel').innerText = uiText["banLabel"][lang];
+            document.getElementById('mapLabel').innerText = uiText["mapLabel"][lang];
+            document.getElementById('queryButton').innerText = uiText["queryButton"][lang];
+            document.getElementById('copyButton').innerText = uiText["copyButton"][lang];
+            document.getElementById('clearButton').innerText = uiText["clearButton"][lang];
+
+            document.getElementById('ban1').options[0].text = uiText["defaultOption"][lang];
+            document.getElementById('ban2').options[0].text = uiText["defaultOption"][lang];
+            document.getElementById('ban3').options[0].text = uiText["defaultOption"][lang];
+            document.getElementById('map').options[0].text = uiText["mapOptional"][lang];
+
+            for (let i = 1; i < document.getElementById('ban1').options.length; i++) {
+                let val = document.getElementById('ban1').options[i].value;
+                document.getElementById('ban1').options[i].text = translate(val, lang);
+                document.getElementById('ban2').options[i].text = translate(val, lang);
+                document.getElementById('ban3').options[i].text = translate(val, lang);
+            }
+
+            for (let i = 1; i < document.getElementById('map').options.length; i++) {
+                let val = document.getElementById('map').options[i].value;
+                document.getElementById('map').options[i].text = translate(val, lang);
+            }
+
+            predict(false);
+        }
+    
+fetch('data.json')
+  .then(response => response.json())
+  .then(json => {
+    data = json;
+    initializeSelectors();  // 重新初始化選單
+    showMessage(currentLang === 'ja' ? 'データを読み込みました ✅' :
+                currentLang === 'ko' ? '데이터를 불러왔습니다 ✅' :
+                currentLang === 'en' ? 'Data loaded ✅' : '已載入資料 ✅');
+  });
+
+
+function initializeMapSelector() {
+  const mapSelector = document.getElementById("mapSelector");
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = mapPlaceholder[currentLang];
+  mapSelector.innerHTML = '';
+  mapSelector.appendChild(defaultOption);
+
+  const maps = [...new Set(data.map(entry => entry["地圖"]).filter(x => !!x))];
+  const orderedMaps = ['軍工廠', '紅教堂', '聖心醫院', '湖景村', '月亮河公園', '里奧的回憶', '永眠鎮', '唐人街', '不歸林'].filter(map => maps.includes(map));
+  for (const map of orderedMaps) {
+    const option = document.createElement("option");
+    option.value = map;
+    option.textContent = translate(map);
+    mapSelector.appendChild(option);
+  }
+}
+
+</script>
+</body>
+</html>
