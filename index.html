@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>第五人格監管者預測器（多語言版）</title>
+<style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        select { margin: 5px; padding: 8px; font-size: 14px; border-radius: 5px; }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .query-button { background-color: #4CAF50; color: white; }
+        .copy-button { background-color: #2196F3; color: white; }
+        .clear-button { background-color: #f44336; color: white; }
+        button:hover { opacity: 0.8; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        #prediction { font-size: 18px; margin-top: 20px; color: #333; }
+        .row { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+        .right-align { margin-left: auto; display: flex; align-items: center; }
+    </style>
+</head>
+<body>
+<h1 id="title">第五人格 - 監管者預測器</h1>
+<div class="row">
+<label id="banLabel">Ban位：</label>
+<select id="ban1"><option value="">--請選擇Ban位--</option>
+<option value="前鋒">前鋒</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="勘探員">勘探員</option>
+<option value="野人">野人</option>
+<option value="記者">記者</option>
+<option value="火災調查員">火災調查員</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="大副">大副</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="雜技演員">雜技演員</option>
+<option value="囚徒">囚徒</option>
+<option value="律師">律師</option>
+<option value="病患">病患</option>
+<option value="小女孩">小女孩</option>
+<option value="牛仔">牛仔</option>
+<option value="守墓人">守墓人</option>
+<option value="法羅女士">法羅女士</option>
+<option value="調酒師">調酒師</option>
+<option value="玩具商">玩具商</option>
+<option value="心理學家">心理學家</option>
+<option value="無">無</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="野人">野人</option>
+<option value="勘探員">勘探員</option>
+<option value="記者">記者</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="火災調查員">火災調查員</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="大副">大副</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="雜技演員">雜技演員</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="囚徒">囚徒</option>
+<option value="守墓人">守墓人</option>
+<option value="調酒師">調酒師</option>
+<option value="法羅女士">法羅女士</option>
+<option value="玩具商">玩具商</option>
+<option value="律師">律師</option>
+<option value="無">無</option></select>
+<select id="ban2"><option value="">--請選擇Ban位--</option>
+<option value="前鋒">前鋒</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="勘探員">勘探員</option>
+<option value="野人">野人</option>
+<option value="記者">記者</option>
+<option value="火災調查員">火災調查員</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="大副">大副</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="雜技演員">雜技演員</option>
+<option value="囚徒">囚徒</option>
+<option value="律師">律師</option>
+<option value="病患">病患</option>
+<option value="小女孩">小女孩</option>
+<option value="牛仔">牛仔</option>
+<option value="守墓人">守墓人</option>
+<option value="法羅女士">法羅女士</option>
+<option value="調酒師">調酒師</option>
+<option value="玩具商">玩具商</option>
+<option value="心理學家">心理學家</option>
+<option value="無">無</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="野人">野人</option>
+<option value="勘探員">勘探員</option>
+<option value="記者">記者</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="火災調查員">火災調查員</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="大副">大副</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="雜技演員">雜技演員</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="囚徒">囚徒</option>
+<option value="守墓人">守墓人</option>
+<option value="調酒師">調酒師</option>
+<option value="法羅女士">法羅女士</option>
+<option value="玩具商">玩具商</option>
+<option value="律師">律師</option>
+<option value="無">無</option></select>
+<select id="ban3"><option value="">--請選擇Ban位--</option>
+<option value="前鋒">前鋒</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="勘探員">勘探員</option>
+<option value="野人">野人</option>
+<option value="記者">記者</option>
+<option value="火災調查員">火災調查員</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="大副">大副</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="雜技演員">雜技演員</option>
+<option value="囚徒">囚徒</option>
+<option value="律師">律師</option>
+<option value="病患">病患</option>
+<option value="小女孩">小女孩</option>
+<option value="牛仔">牛仔</option>
+<option value="守墓人">守墓人</option>
+<option value="法羅女士">法羅女士</option>
+<option value="調酒師">調酒師</option>
+<option value="玩具商">玩具商</option>
+<option value="心理學家">心理學家</option>
+<option value="無">無</option>
+<option value="弓箭手">弓箭手</option>
+<option value="祭司">祭司</option>
+<option value="古董商">古董商</option>
+<option value="先知">先知</option>
+<option value="機械師">機械師</option>
+<option value="傭兵">傭兵</option>
+<option value="騎士">騎士</option>
+<option value="小說家">小說家</option>
+<option value="氣象學家">氣象學家</option>
+<option value="野人">野人</option>
+<option value="勘探員">勘探員</option>
+<option value="記者">記者</option>
+<option value="擊球手">擊球手</option>
+<option value="飛行家">飛行家</option>
+<option value="火災調查員">火災調查員</option>
+<option value="空軍">空軍</option>
+<option value="逃脫大師">逃脫大師</option>
+<option value="大副">大副</option>
+<option value="昆蟲學者">昆蟲學者</option>
+<option value="雜技演員">雜技演員</option>
+<option value="哭泣小丑">哭泣小丑</option>
+<option value="囚徒">囚徒</option>
+<option value="守墓人">守墓人</option>
+<option value="調酒師">調酒師</option>
+<option value="法羅女士">法羅女士</option>
+<option value="玩具商">玩具商</option>
+<option value="律師">律師</option>
+<option value="無">無</option></select>
+<label id="mapLabel" style="margin-left:20px;">地圖（選填）：</label>
+<select id="map"><option value="軍工廠">軍工廠</option><option value="紅教堂">紅教堂</option><option value="聖心醫院">聖心醫院</option><option value="湖景村">湖景村</option><option value="月亮河公園">月亮河公園</option><option value="里奧的回憶">里奧的回憶</option><option value="永眠鎮">永眠鎮</option><option value="唐人街">唐人街</option><option value="不歸林">不歸林</option></select>
+<div class="right-align">
+<label id="langLabel" style="margin-right: 5px;">🌐</label>
+<select id="language" onchange="changeLanguage()" style="width: 120px;">
+<option value="中文">中文</option>
+<option value="韓文">한국어</option>
+<option value="日文">日本語</option>
+<option value="英文">English</option>
+</select>
+</div>
+</div>
+<div class="row">
+<button class="query-button" id="queryButton" onclick="predict(false)">查詢</button>
+<button class="copy-button" id="copyButton" onclick="predict(true)">查詢並複製到剪貼簿</button>
+<button class="clear-button" id="clearButton" onclick="clearSelection()">清除選擇</button>
+</div>
+<div id="message" style="color: green; font-weight: bold;"></div>
+<div id="prediction"></div>
+<div id="result"></div>
+<script>
+fetch('data.json')
+  .then(response => response.json())
+  .then(json => {
+    data = json;
+    console.log("資料已成功載入，共 " + data.length + " 筆");
+  })
+  .catch(error => {
+    console.error("讀取 data.json 發生錯誤：", error);
+  });
+</script>
+</body>
+</html>
