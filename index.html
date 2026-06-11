@@ -263,13 +263,21 @@
     function normalizeRow(row) {
         let cleanData = { b1: "", b2: "", b3: "", map: "", hunter: "", player: "" };
         for (let key in row) {
-            let k = key.replace(/\s+/g, '').toLowerCase();
-            if (k.includes('ban1') || k === '一') cleanData.b1 = String(row[key]).trim();
-            else if (k.includes('ban2') || k === '二') cleanData.b2 = String(row[key]).trim();
-            else if (k.includes('ban3') || k === '三') cleanData.b3 = String(row[key]).trim();
-            else if (k.includes('地圖') || k === 'map') cleanData.map = String(row[key]).trim();
-            else if (k.includes('監管') || k === '屠夫') cleanData.hunter = String(row[key]).trim().replace("黄", "黃");
-            else if (k.includes('玩家') || k === 'player') cleanData.player = String(row[key]).trim();
+            // 將標題轉小寫並去除所有空格
+            let k = String(key).replace(/\s+/g, '').toLowerCase();
+
+            // 讀取儲存格的值，並強制清除「隱形字元」與「前後空白」
+            let cellValue = String(row[key]).replace(/[\u200B-\u200D\uFEFF]/g, '').trim();
+
+            // 升級版智慧比對：不管叫 Ban位1、第一Ban、Ban1區 都抓得到
+            if (/(ban.*1)|(1.*ban)|一/.test(k)) cleanData.b1 = cellValue;
+            else if (/(ban.*2)|(2.*ban)|二/.test(k)) cleanData.b2 = cellValue;
+            else if (/(ban.*3)|(3.*ban)|三/.test(k)) cleanData.b3 = cellValue;
+            else if (k.includes('地圖') || k.includes('map')) cleanData.map = cellValue;
+            else if (k.includes('監管') || k.includes('屠夫') || k.includes('hunter')) {
+                cleanData.hunter = cellValue.replace("黄", "黃"); // 繁簡防呆
+            }
+            else if (k.includes('玩家') || k.includes('player') || k.includes('id')) cleanData.player = cellValue;
         }
         return cleanData;
     }
