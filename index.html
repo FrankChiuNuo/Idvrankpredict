@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>第五人格 - 監管者預測器</title>
+    <!-- 引入 SheetJS 用來解析 Excel (.xlsx) -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- 引入 Chart.js 用來繪製圓餅圖 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @font-face {
@@ -121,11 +123,13 @@
         </div>
     </div>
 
+    <!-- 頁籤按鈕區 -->
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('forward-tab')" id="ui-tabForward">🔍 正向預測</button>
         <button class="tab-btn" onclick="switchTab('reverse-tab')" id="ui-tabReverse">🔄 反向查詢</button>
     </div>
     
+    <!-- 共用工作表選擇 -->
     <div class="sheet-selection" style="margin-bottom: 20px;">
         <label id="ui-sheetLabel">📅 選擇要納入統計的資料範圍 (預設全選)：</label>
         <div id="sheet-checkboxes" class="sheet-checkboxes">
@@ -133,22 +137,23 @@
         </div>
     </div>
 
+    <!-- === 分頁 1：正向預測 === -->
     <div id="forward-tab" class="tab-content active">
         <div class="form-group">
             <div class="select-wrapper">
                 <label id="lbl-ban1">Ban 1：</label>
                 <input type="text" id="search-ban1" class="search-input" placeholder="🔍 搜尋...">
-                <select id="ban1" class="data-select ban-select"><option value="" class="opt-default">--請選擇Ban位--</option></select>
+                <select id="ban1" class="data-select ban-select"><option value="" class="opt-default">--請選擇--</option></select>
             </div>
             <div class="select-wrapper">
                 <label id="lbl-ban2">Ban 2：</label>
                 <input type="text" id="search-ban2" class="search-input" placeholder="🔍 搜尋...">
-                <select id="ban2" class="data-select ban-select"><option value="" class="opt-default">--請選擇Ban位--</option></select>
+                <select id="ban2" class="data-select ban-select"><option value="" class="opt-default">--請選擇--</option></select>
             </div>
             <div class="select-wrapper">
                 <label id="lbl-ban3">Ban 3：</label>
                 <input type="text" id="search-ban3" class="search-input" placeholder="🔍 搜尋...">
-                <select id="ban3" class="data-select ban-select"><option value="" class="opt-default">--請選擇Ban位--</option></select>
+                <select id="ban3" class="data-select ban-select"><option value="" class="opt-default">--請選擇--</option></select>
             </div>
             <div class="select-wrapper">
                 <label id="lbl-map">地圖（選填）：</label>
@@ -175,6 +180,7 @@
                     <div id="statsBox" class="stats-box"></div>
                     <button id="ui-copyBtn" class="btn-copy" onclick="copyStats()">📋 複製預測結果</button>
                 </div>
+                <!-- 圓餅圖位置 -->
                 <div class="chart-area">
                     <canvas id="forwardPieChart"></canvas>
                 </div>
@@ -198,12 +204,14 @@
         </div>
     </div>
 
+    <!-- === 分頁 2：反向查詢 === -->
     <div id="reverse-tab" class="tab-content">
         <div class="form-group">
             <div class="select-wrapper">
                 <label id="lbl-revHunter">選擇監管者：</label>
                 <input type="text" id="search-revHunter" class="search-input" placeholder="🔍 搜尋...">
-                <select id="revHunter" class="data-select"><option value="">--請選擇監管者--</option></select>
+                <!-- ★ 這裡的預設選項加上了 class="opt-default" 並改成了 --請選擇-- -->
+                <select id="revHunter" class="data-select"><option value="" class="opt-default">--請選擇--</option></select>
             </div>
         </div>
 
@@ -217,6 +225,7 @@
                 <div class="stats-text-area">
                     <div id="reverseStatsBox" class="stats-box"></div>
                 </div>
+                <!-- 地圖圓餅圖位置 -->
                 <div class="chart-area">
                     <canvas id="reversePieChart"></canvas>
                 </div>
@@ -245,6 +254,7 @@
         "tabReverse": {"中文": "🔄 反向查詢", "韓文": "🔄 역방향 조회", "日文": "🔄 逆引き検索", "英文": "🔄 Reverse Lookup"},
         "banLabel": {"中文": "Ban位", "韓文": "밴 위치", "日文": "BAN枠", "英文": "Ban Slot"},
         "mapLabel": {"中文": "地圖（選填）：", "韓文": "맵（선택）：", "日文": "マップ（任意）：", "英文": "Map (Optional):"},
+        "revHunterLabel": {"中文": "選擇監管者：", "韓文": "헌터 선택：", "日文": "ハンターを選択：", "英文": "Select Hunter:"}, // ★ 新增反向查詢的標籤翻譯
         "queryButton": {"中文": "開始預測", "韓文": "예측 시작", "日文": "予測開始", "英文": "Start Prediction"},
         "revQueryButton": {"中文": "查詢常 Ban 陣容", "韓文": "자주 밴하는 조합 조회", "日文": "よくBANされる構成を検索", "英文": "Find Frequent Bans"},
         "copyButton": {"中文": "📋 複製預測結果", "韓文": "📋 결과 복사", "日文": "📋 結果をコピー", "英文": "📋 Copy Results"},
@@ -275,7 +285,10 @@
         "alertNotFound": {"中文": "找不到包含「{0}」的資料，請重新確認！", "韓文": "「{0}」이(가) 포함된 데이터를 찾을 수 없습니다. 다시 확인해주세요!", "日文": "「{0}」を含むデータが見つかりません。再確認してください！", "英文": "No data containing \"{0}\" found, please check again!"},
         "searchPlaceholder": {"中文": "🔍 搜尋...", "韓文": "🔍 검색...", "日文": "🔍 検索...", "英文": "🔍 Search..."},
         "otherLabel": {"中文": "其他", "韓文": "기타", "日文": "その他", "英文": "Others"},
-        "chartMapTitle": {"中文": "出沒地圖分佈", "韓文": "출몰 맵 분포", "日文": "出没マップ分布", "英文": "Map Distribution"}
+        "chartMapTitle": {"中文": "出沒地圖分佈", "韓文": "출몰 맵 분포", "日文": "出没マップ分布", "英文": "Map Distribution"},
+        "matchCount": {"中文": "{0} 場", "韓文": "{0} 게임", "日文": "{0} 試合", "英文": "{0} matches"},
+        "revTotal": {"中文": "共出現 {0} 場：", "韓文": "총 {0}게임 등장：", "日文": "合計 {0} 試合出現：", "英文": "Total {0} matches:"},
+        "revCommonBan": {"中文": "🔥 最常見的 Ban 組合：", "韓文": "🔥 가장 많이 밴 된 조합：", "日文": "🔥 最もよくBANされる構成：", "英文": "🔥 Most frequent Ban combos:"}
     };
 
     // --- 全局變數 ---
@@ -285,6 +298,8 @@
 
     let allSheetsData = {}; 
     let currentMatchedData = [];
+    let currentRevMatchedData = [];
+    let currentRevHunter = "";
     let currentLang = "中文";
     let chartInstances = {}; // 管理 Chart.js 實例
     
@@ -346,7 +361,7 @@
     }
 
     // --- 畫圓餅圖邏輯 (防裁切優化) ---
-    function drawPieChart(canvasId, labels, dataArr, colors) {
+    function drawPieChart(canvasId, labels, dataArr, colors, titleText) {
         const ctx = document.getElementById(canvasId).getContext('2d');
         if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
 
@@ -359,8 +374,9 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                layout: { padding: 10 }, // 預防標籤超出邊界被切掉
+                layout: { padding: 10 }, 
                 plugins: {
+                    title: { display: (titleText ? true : false), text: titleText, font: { family: 'OpenHuninn', size: 16 } },
                     legend: {
                         position: 'bottom',
                         labels: {
@@ -388,8 +404,12 @@
         updateUILanguage();
         updateDropdownTranslations();
         updateExcelFormatUI(); 
+        
         if (currentMatchedData.length > 0 && document.getElementById('forward-tab').classList.contains('active')) {
             displayResults(currentMatchedData);
+        }
+        if (currentRevMatchedData.length > 0 && document.getElementById('reverse-tab').classList.contains('active')) {
+            displayReverseResults(currentRevMatchedData, currentRevHunter);
         }
     }
 
@@ -407,6 +427,7 @@
         document.getElementById('lbl-ban2').innerText = t("banLabel") + " 2：";
         document.getElementById('lbl-ban3').innerText = t("banLabel") + " 3：";
         document.getElementById('lbl-map').innerText = t("mapLabel");
+        document.getElementById('lbl-revHunter').innerText = t("revHunterLabel");
         
         document.getElementById('ui-queryBtn').innerText = t("queryButton");
         document.getElementById('ui-revQueryBtn').innerText = t("revQueryButton");
@@ -454,6 +475,7 @@
         document.getElementById('resultSection').style.display = 'none';
         document.getElementById('reverseResultSection').style.display = 'none';
         currentMatchedData = [];
+        currentRevMatchedData = [];
     }
 
     // --- Excel 快速登記介面聯動 ---
@@ -620,16 +642,15 @@
         let statsHtml = '<ul>';
         const sortedHunters = Object.entries(hunterCounts).sort((a, b) => b[1] - a[1]);
         
-        // 圖表資料陣列
         let chartLabels = [], chartData = [], chartColors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'];
         let othersCount = 0;
 
         for (let i = 0; i < sortedHunters.length; i++) {
             const [hunter, count] = sortedHunters[i];
             const percentage = ((count / data.length) * 100).toFixed(1);
-            statsHtml += `<li><strong>${tName(hunter)}</strong> : ${percentage}% (${count} 場)</li>`;
+            const matchesText = t("matchCount").replace("{0}", count); 
+            statsHtml += `<li><strong>${tName(hunter)}</strong> : ${percentage}% (${matchesText})</li>`;
             
-            // 將前4名畫入圓餅圖，第5名以後打包成「其他」避免截斷
             if (i < 4) {
                 chartLabels.push(tName(hunter));
                 chartData.push(count);
@@ -645,8 +666,7 @@
             chartData.push(othersCount);
         }
 
-        // 畫圖表
-        drawPieChart('forwardPieChart', chartLabels, chartData, chartColors);
+        drawPieChart('forwardPieChart', chartLabels, chartData, chartColors, null);
 
         data.forEach(row => {
             const tr = document.createElement('tr');
@@ -674,8 +694,13 @@
         const activeDatabase = getActiveData();
         if(!activeDatabase) return;
 
-        const matchedData = activeDatabase.filter(row => row.hunter === selectedHunter);
+        currentRevMatchedData = activeDatabase.filter(row => row.hunter === selectedHunter);
+        currentRevHunter = selectedHunter;
 
+        displayReverseResults(currentRevMatchedData, currentRevHunter);
+    }
+
+    function displayReverseResults(matchedData, selectedHunter) {
         document.getElementById('reverseResultSection').style.display = 'block';
         const statsBox = document.getElementById('reverseStatsBox');
         statsBox.innerHTML = '';
@@ -698,18 +723,19 @@
         const sortedMaps = Object.entries(mapCounts).sort((a, b) => b[1] - a[1]);
         const sortedCombos = Object.entries(comboCounts).sort((a, b) => b[1] - a[1]);
 
-        let statsHtml = `<p style="font-size:16px;"><strong>${tName(selectedHunter)}</strong> 共出現 ${matchedData.length} 場：</p>`;
+        let totalText = t("revTotal").replace("{0}", matchedData.length);
+        let statsHtml = `<p style="font-size:16px;"><strong>${tName(selectedHunter)}</strong> ${totalText}</p>`;
         
-        statsHtml += `<h4 style="margin-bottom:5px;">🔥 最常見的 Ban 組合：</h4><ol style="margin-top:0;">`;
+        statsHtml += `<h4 style="margin-bottom:5px;">${t("revCommonBan")}</h4><ol style="margin-top:0;">`;
         for (let i = 0; i < Math.min(3, sortedCombos.length); i++) {
             const comboNames = sortedCombos[i][0].split(',').map(tName).join(' + ');
-            statsHtml += `<li>${comboNames} (${sortedCombos[i][1]} 場)</li>`;
+            const matchesText = t("matchCount").replace("{0}", sortedCombos[i][1]);
+            statsHtml += `<li>${comboNames} (${matchesText})</li>`;
         }
         statsHtml += `</ol>`;
         
         statsBox.innerHTML = statsHtml;
 
-        // 整理反向圖表資料 (地圖前4名 + 其他)
         let chartLabels = [], chartData = [], chartColors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'];
         let othersCount = 0;
 
@@ -726,7 +752,7 @@
             chartData.push(othersCount);
         }
 
-        drawPieChart('reversePieChart', chartLabels, chartData, chartColors);
+        drawPieChart('reversePieChart', chartLabels, chartData, chartColors, t("chartMapTitle"));
     }
 
     function copyStats() {
